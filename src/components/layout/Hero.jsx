@@ -17,8 +17,6 @@ const Hero = () => {
       .then((err) => console.error(err));
   }, []);
 
-
-
   return (
     <section className="relative py-[10rem] flex items-center justify-center overflow-hidden w-[90%] my-[3rem] mx-auto rounded-3xl ">
       <div class="absolute inset-0 bg-gradient-to-bl from-[#4f0000] via-[#934b1a] to-[#A4508B] opacity-40 blur-[120px] grainy-texture"></div>
@@ -30,17 +28,26 @@ const Hero = () => {
       >
         <div className="flex flex-col items-center space-y-4 text-center">
           <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-foreground font-sans max-w-[48rem] lg:leading-tight">
-            The only <span className="bg-[#f29c36] text-black px-2 rounded-sm">Hub</span>{" "}made for Indie Hackers
+            The only{" "}
+            <span className="bg-[#f29c36] text-black px-2 rounded-sm">Hub</span>{" "}
+            made for Indie Hackers
           </h1>
           <p className="max-w-[700px] opacity-80 md:text-xl">
             All the resources you need to build and grow your next project.
           </p>
 
           <div className="flex gap-4   items-center justify-center flex-wrap">
-          <Link href="/#resources" className="flex items-center gap-1 grow text-sm font-sans underline underline-offset-4 font-medium">
-              <LucideGithub size={17}/>{stars} Star on GitHub
+            <Link
+              href="/#resources"
+              className="flex items-center gap-1 grow text-sm font-sans underline underline-offset-4 font-medium"
+            >
+              <LucideGithub size={17} />
+              {stars} Star on GitHub
             </Link>
-            <Link href="/#resources" className="flex items-center gap-1 grow text-sm font-sans px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 font-medium">
+            <Link
+              href="/#resources"
+              className="flex items-center gap-1 grow text-sm font-sans px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 font-medium"
+            >
               Explore All Resources
             </Link>
           </div>

@@ -38,7 +38,9 @@ const Header = () => {
       >
         <div className="flex items-center gap-2">
           <Image src="/logo.svg" alt="IndieHub" width={30} height={30} />
-          <Link href="/" className="font-medium font-sans">IndieHub</Link>
+          <Link href="/" className="font-medium font-sans">
+            IndieHub
+          </Link>
         </div>
         <div className="hidden md:block">
           <ul className="flex items-center gap-4">
@@ -97,8 +99,8 @@ const Header = () => {
                     </Link>
                   </li>
                   <li className="flex items-center gap-2">
-                    <ThemeToggle/>
-                    <Button  className="grow flex items-center justify-center gap-1">
+                    <ThemeToggle />
+                    <Button className="grow flex items-center justify-center gap-1">
                       <svg
                         class="w-20 h-20"
                         viewBox="0 0 17 16"
