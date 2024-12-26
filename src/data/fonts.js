@@ -19,7 +19,7 @@ const fonts = [
     },
     {
         name: "Free Designer Resources Fonts",
-        descrpition: "Handpicked free fonts to create a beautiful design. Ranging from script, display, sans serif, serif, and more.",
+        description: "Handpicked free fonts to create a beautiful design. Ranging from script, display, sans serif, serif, and more.",
         link: "freedesignresources.net",
         image: "https://i.imgur.com/PeI51cf.png",
     },

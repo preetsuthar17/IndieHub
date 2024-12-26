@@ -10,11 +10,9 @@ import { Syne } from "next/font/google";
 import { Button } from "../ui/button";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { ThemeToggle } from "@/components/theme-toggler";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -76,7 +74,6 @@ const Header = () => {
         </div>
         <div className="hidden md:block">
           <div className="flex items-center gap-2">
-            <ThemeToggle />
             <Button
               variant="secondary"
               className="flex items-center gap-1 hover:bg-primary/10 transition-all"
@@ -149,7 +146,6 @@ const Header = () => {
                     </Link>
                   </li>
                   <li className="flex items-center gap-2">
-                    <ThemeToggle />
                     <Button
                       className="grow flex items-center justify-center gap-1"
                       onClick={() =>

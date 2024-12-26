@@ -54,19 +54,13 @@ const Resources = () => {
     <>
       <section id="resources">
         <div className="flex flex-col items-center justify-center my-[5rem] w-[90%] mx-auto gap-20">
-          <div className="flex flex-col items-center justify-center text-center gap-2">
-            <h2 className="text-3xl font-bold font-sans">Resources</h2>
-            <p className="opacity-80">
-              List of available resources for indie hackers and developers.{" "}
-            </p>
-          </div>
           <div>
             {/* Category chips */}
             <div className="flex flex-wrap gap-2 mb-8 font-sans">
               {categories.map((category) => (
                 <Button
                   key={category.id}
-                  className="rounded-full font-medium"
+                  className="rounded-full font-medium  grow"
                   variant={
                     selectedCategory === category.id ? "default" : "outline"
                   }
