@@ -45,12 +45,21 @@ const Header = () => {
         <div className="hidden md:block">
           <ul className="flex items-center gap-4">
             <li>
-              <Link className="text-sm hover:underline" href="#">
+              <Link className="text-sm hover:underline" href="/">
                 Home
               </Link>
             </li>
             <li>
-              <Link className="text-sm hover:underline" href="#">
+              <Link className="text-sm hover:underline" href="/#resources">
+                Resources
+              </Link>
+            </li>
+            <li>
+              <Link
+                target="_blank"
+                className="text-sm hover:underline"
+                href="https://x.com/nott_preett"
+              >
                 Twitter
               </Link>
             </li>
@@ -96,6 +105,19 @@ const Header = () => {
                   <li>
                     <Link href="#" className="block py-2 hover:underline">
                       Home
+                    </Link>
+                    <Link
+                      href="#resources"
+                      className="block py-2 hover:underline"
+                    >
+                      Resources
+                    </Link>
+                    <Link
+                      target="_blank"
+                      href="https://x.com/nott_preett"
+                      className="block py-2 hover:underline"
+                    >
+                      Twitter
                     </Link>
                   </li>
                   <li className="flex items-center gap-2">

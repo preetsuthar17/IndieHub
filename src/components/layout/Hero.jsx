@@ -39,14 +39,14 @@ const Hero = () => {
           <div className="flex gap-4   items-center justify-center flex-wrap">
             <Link
               href="/#resources"
-              className="flex items-center gap-1 grow text-sm font-sans underline underline-offset-4 font-medium"
+              className="flex items-center gap-1 grow text-sm font-sans underline underline-offset-4 font-medium text-center justify-center"
             >
               <LucideGithub size={17} />
               {stars} Star on GitHub
             </Link>
             <Link
               href="/#resources"
-              className="flex items-center gap-1 grow text-sm font-sans px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 font-medium"
+              className="flex items-center gap-1 grow text-sm font-sans px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 font-medium text-center justify-center"
             >
               Explore All Resources
             </Link>
