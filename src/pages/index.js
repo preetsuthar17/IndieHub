@@ -6,7 +6,6 @@ export default function Home() {
     <>
       <section>
         <Hero />
-        <hr className="opacity-50" />
         <Resources />
       </section>
     </>
