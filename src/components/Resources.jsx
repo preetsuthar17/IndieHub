@@ -87,7 +87,7 @@ const Resources = () => {
       },
       {
         rootMargin: "50px",
-      }
+      },
     );
 
     const images = document.querySelectorAll("[data-src]");

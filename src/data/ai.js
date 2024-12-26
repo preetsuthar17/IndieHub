@@ -46,49 +46,56 @@ const ai = [
       "GitHub Copilot is an AI pair programmer that helps you write code faster.",
     link: "copilot.github.com",
     image: "https://i.imgur.com/XT3ZdkI.png",
-  }, {
+  },
+  {
     name: "Amazon CodeWhisperer",
-    description: "AI-powered coding companion that generates code suggestions in real-time, helping developers build applications faster and more securely.",
+    description:
+      "AI-powered coding companion that generates code suggestions in real-time, helping developers build applications faster and more securely.",
     link: "aws.amazon.com/codewhisperer",
     image: "https://i.imgur.com/IMFGUZ2.png",
   },
   {
     name: "Tabnine",
-    description: "AI code completion tool that helps you write code faster with whole-line and full-function code completions.",
+    description:
+      "AI code completion tool that helps you write code faster with whole-line and full-function code completions.",
     link: "tabnine.com",
     image: "https://i.imgur.com/ggLL8qT.png",
   },
   {
     name: "CodeGeeX",
-    description: "A multilingual code generation model that supports code completion and translation in multiple programming languages.",
+    description:
+      "A multilingual code generation model that supports code completion and translation in multiple programming languages.",
     link: "codegeex.cn",
     image: "https://i.imgur.com/Zpl2rvW.png",
   },
   {
     name: "Sourcegraph Cody",
-    description: "AI coding assistant that understands your entire codebase and helps you write, fix, and maintain code.",
+    description:
+      "AI coding assistant that understands your entire codebase and helps you write, fix, and maintain code.",
     link: "sourcegraph.com/cody",
     image: "https://i.imgur.com/yKP0KnL.png",
   },
   {
     name: "Mintlify",
-    description: "AI-powered documentation writer that helps you create and maintain beautiful documentation.",
+    description:
+      "AI-powered documentation writer that helps you create and maintain beautiful documentation.",
     link: "mintlify.com",
     image: "https://i.imgur.com/bblm5va.png",
   },
   {
     name: "Phind",
-    description: "AI-powered search engine for developers that provides detailed technical answers and code examples.",
+    description:
+      "AI-powered search engine for developers that provides detailed technical answers and code examples.",
     link: "phind.com",
     image: "https://i.imgur.com/qkvpwWS.png",
   },
   {
     name: "Bloop",
-    description: "Natural language code search engine that helps you find and understand code across your codebase.",
+    description:
+      "Natural language code search engine that helps you find and understand code across your codebase.",
     link: "bloop.ai",
     image: "https://i.imgur.com/l2eMgtn.png",
   },
- 
 ];
 
 export default ai;

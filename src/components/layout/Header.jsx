@@ -86,7 +86,7 @@ const Header = () => {
               onClick={() =>
                 window.open(
                   "https://github.com/preetsuthar17/IndieHub",
-                  "_blank"
+                  "_blank",
                 )
               }
             >
@@ -157,7 +157,7 @@ const Header = () => {
                       onClick={() =>
                         window.open(
                           "https://github.com/preetsuthar17/IndieHub",
-                          "_blank"
+                          "_blank",
                         )
                       }
                     >
