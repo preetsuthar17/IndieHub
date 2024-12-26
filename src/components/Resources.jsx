@@ -6,10 +6,12 @@ import { Skeleton } from "./ui/skeleton";
 
 import ai from "../data/ai";
 import ui from "../data/ui";
+import design from "../data/design";
 
 const categories = [
   { id: "ui", label: "User Interface (UI)", data: ui },
   { id: "ai", label: "AI Tools", data: ai },
+  { id: "design", label: "Design Tools", data: design },
 ];
 
 const Resources = () => {
@@ -17,14 +19,13 @@ const Resources = () => {
   const [resources, setResources] = useState([]);
   const [visibleCount, setVisibleCount] = useState(5);
 
-  // Use useEffect to load resources when category changes
   useEffect(() => {
     const currentCategory = categories.find(
       (cat) => cat.id === selectedCategory,
     );
     if (currentCategory) {
       setResources(currentCategory.data);
-      setVisibleCount(6); // Reset visible count when changing categories
+      setVisibleCount(6);
     }
   }, [selectedCategory]);
 
@@ -35,7 +36,7 @@ const Resources = () => {
   return (
     <>
       <section id="resources">
-        <div className="flex flex-col items-center justify-center my-[5rem] w-[90%] mx-auto">
+        <div className="flex flex-col items-center justify-center my-[5rem] w-[90%] mx-auto gap-20">
           <div className="flex flex-col items-center justify-center text-center gap-2">
             <h2 className="text-3xl font-bold font-sans">Resources</h2>
             <p className="opacity-80">
@@ -74,7 +75,7 @@ const Resources = () => {
                         <img
                           src={resource.image}
                           alt={resource.name}
-                          className="object-cover rounded-md w-full h-40"
+                          className="object-cover rounded-md w-full h-[15rem]"
                         />
                       </div>
                       <h3 className="font-sans font-medium">{resource.name}</h3>
