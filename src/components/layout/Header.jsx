@@ -80,6 +80,12 @@ const Header = () => {
             <Button
               variant="secondary"
               className="flex items-center gap-1 hover:bg-primary/10 transition-all"
+              onClick={() =>
+                window.open(
+                  "https://github.com/preetsuthar17/IndieHub",
+                  "_blank"
+                )
+              }
             >
               <svg
                 class="w-10 h-10"
@@ -144,7 +150,15 @@ const Header = () => {
                   </li>
                   <li className="flex items-center gap-2">
                     <ThemeToggle />
-                    <Button className="grow flex items-center justify-center gap-1">
+                    <Button
+                      className="grow flex items-center justify-center gap-1"
+                      onClick={() =>
+                        window.open(
+                          "https://github.com/preetsuthar17/IndieHub",
+                          "_blank"
+                        )
+                      }
+                    >
                       <svg
                         class="w-20 h-20"
                         viewBox="0 0 17 16"

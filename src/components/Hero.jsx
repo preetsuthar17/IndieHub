@@ -39,9 +39,10 @@ const Hero = () => {
             All the resources you need to build and grow your next project.
           </p>
 
-          <div className="flex gap-4   items-center justify-center flex-wrap">
+          <div className="flex gap-8  items-center justify-center flex-wrap">
             <Link
-              href="/#resources"
+              href="https://github.com/preetsuthar17/IndieHub"
+              target="_blank"
               className="flex items-center gap-1 grow text-sm font-sans underline underline-offset-4 font-medium text-center justify-center"
             >
               Star on GitHub
