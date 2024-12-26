@@ -4,6 +4,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Layout from "@/components/layout/Layout";
 
 import { NextSeo } from "next-seo";
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 
 export default function App({ Component, pageProps }) {
   return (
@@ -20,6 +22,7 @@ export default function App({ Component, pageProps }) {
         />
         <Layout>
           <Component {...pageProps} />
+          <GoogleAnalytics gaId="G-KJBEV1B49F" />
         </Layout>
       </ThemeProvider>
     </>
