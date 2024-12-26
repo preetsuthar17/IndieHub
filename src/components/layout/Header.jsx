@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { Menu } from "lucide-react";
+import { ArrowRight, Menu } from "lucide-react";
 
 import { Syne } from "next/font/google";
 
@@ -21,11 +21,22 @@ const Header = () => {
   useEffect(() => {
     fetch("https://api.github.com/repos/preetsuthar17/IndieHub")
       .then((res) => res.json())
-      .then((data) => setStars(data.stargazers_count))
+      .then((data) => setStars(data.stargazers_count));
   }, []);
 
   return (
     <>
+      <div
+        className="bg-black text-white cursor-pointer"
+        onClick={() => {
+          window.open("https://contrafast.in", "_blank");
+        }}
+      >
+        <p className="p-2 flex items-center gap-2 justify-center text-center text-sm">
+          Create & Sign Contracts 10x Faster with ContraFast
+          <ArrowRight size={17} />
+        </p>
+      </div>
       <header
         className={`${syne.variable} font-[family-name:var(--font-syne)] border-b px-4 py-4 flex items-center justify-between`}
       >
@@ -75,7 +86,7 @@ const Header = () => {
               onClick={() =>
                 window.open(
                   "https://github.com/preetsuthar17/IndieHub",
-                  "_blank",
+                  "_blank"
                 )
               }
             >
@@ -146,7 +157,7 @@ const Header = () => {
                       onClick={() =>
                         window.open(
                           "https://github.com/preetsuthar17/IndieHub",
-                          "_blank",
+                          "_blank"
                         )
                       }
                     >
