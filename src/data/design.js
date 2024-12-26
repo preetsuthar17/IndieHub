@@ -1,7 +1,8 @@
 const design = [
   {
     name: "Stack Sorted",
-    description: "Collection of the web's best designs sorted by elements. Choose an element and view projects/websites with creative designs for it.",
+    description:
+      "Collection of the web's best designs sorted by elements. Choose an element and view projects/websites with creative designs for it.",
     link: "stacksorted.com",
     image: "https://i.imgur.com/EGT1l8X.png",
   },
@@ -20,28 +21,30 @@ const design = [
   },
   {
     name: "Awwwards",
-    description: "The awards that recognize the talent and effort of the best web designers, developers and agencies in the world.",
+    description:
+      "The awards that recognize the talent and effort of the best web designers, developers and agencies in the world.",
     link: "awwwards.com",
-    image: "https://i.imgur.com/NGczAJ4.jpeg"
+    image: "https://i.imgur.com/NGczAJ4.jpeg",
   },
   {
     name: "Dark Mode Design",
-    description: "Dark Mode Design is a showcase of beautifully designed and inspiring dark mode websites. Dim the lights, lower your screen brightness, and enjoy.",
-    link:"darkmodedesign.com",
-    image: "https://i.imgur.com/QupdiCK.png"
+    description:
+      "Dark Mode Design is a showcase of beautifully designed and inspiring dark mode websites. Dim the lights, lower your screen brightness, and enjoy.",
+    link: "darkmodedesign.com",
+    image: "https://i.imgur.com/QupdiCK.png",
   },
   {
     name: "Minimal Gallary",
     description: "For the love of beautiful & functional websites",
     link: "minimal.gallery",
-    image: "https://i.imgur.com/n7LTc1u.png"
+    image: "https://i.imgur.com/n7LTc1u.png",
   },
   {
     name: "UI verse",
     description: "The Largest Library of Open-Source UI",
     link: "uiverse.io",
-    image: "https://i.imgur.com/iQvnOff.png"
-  }
+    image: "https://i.imgur.com/iQvnOff.png",
+  },
 ];
 
 export default design;
