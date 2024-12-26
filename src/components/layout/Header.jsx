@@ -63,6 +63,15 @@ const Header = () => {
                 Twitter
               </Link>
             </li>
+            <li>
+              <Link
+                target="_blank"
+                className="text-sm hover:underline"
+                href="https://forms.gle/iDTEMEJyVqHKmu6WA"
+              >
+                Submit Resource
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="hidden md:block">
@@ -106,18 +115,31 @@ const Header = () => {
                     <Link href="#" className="block py-2 hover:underline">
                       Home
                     </Link>
+                  </li>
+                  <li>
                     <Link
                       href="#resources"
                       className="block py-2 hover:underline"
                     >
                       Resources
                     </Link>
+                  </li>
+                  <li>
                     <Link
                       target="_blank"
                       href="https://x.com/nott_preett"
                       className="block py-2 hover:underline"
                     >
                       Twitter
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      target="_blank"
+                      href="https://forms.gle/iDTEMEJyVqHKmu6WA"
+                      className="block py-2 hover:underline"
+                    >
+                      Submit Resource
                     </Link>
                   </li>
                   <li className="flex items-center gap-2">
