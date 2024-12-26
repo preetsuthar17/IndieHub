@@ -44,7 +44,7 @@ const Hero = () => {
               href="/#resources"
               className="flex items-center gap-1 grow text-sm font-sans underline underline-offset-4 font-medium text-center justify-center"
             >
-             Star on GitHub
+              Star on GitHub
             </Link>
             <Link
               href="/#resources"
