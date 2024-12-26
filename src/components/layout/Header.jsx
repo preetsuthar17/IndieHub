@@ -27,7 +27,7 @@ const Header = () => {
   return (
     <>
       <div
-        className="bg-black text-white cursor-pointer"
+        className="bg-black text-white cursor-pointer flex items-center justify-center"
         onClick={() => {
           window.open("https://contrafast.in", "_blank");
         }}
