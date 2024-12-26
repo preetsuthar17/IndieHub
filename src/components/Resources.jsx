@@ -1,19 +1,22 @@
-import { useState, useEffect, Suspense, lazy } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";
 
-// Lazy load category data
 const loadCategoryData = async (categoryId) => {
   switch (categoryId) {
-    case 'ui':
+    case "ui":
       return (await import("../data/ui")).default;
-    case 'ai':
+    case "ai":
       return (await import("../data/ai")).default;
-    case 'design':
+    case "design":
       return (await import("../data/design")).default;
-    case 'fonts':
+    case "fonts":
       return (await import("../data/fonts")).default;
+    case "colors":
+      return (await import("../data/colors")).default;
+    case "images":
+      return (await import("../data/images")).default;
     default:
       return [];
   }
@@ -24,7 +27,9 @@ const categories = [
   { id: "ui", label: "UI Libraries" },
   { id: "ai", label: "AI Tools" },
   { id: "design", label: "UI/UX Inspirations" },
-  { id: "fonts", label: "Fonts" }
+  { id: "fonts", label: "Fonts" },
+  { id: "colors", label: "Colors" },
+  { id: "images", label: "Images" },
 ];
 
 const Resources = () => {
@@ -40,7 +45,6 @@ const Resources = () => {
       try {
         const data = await loadCategoryData(selectedCategory);
         setResources(data);
-
       } catch (error) {
         console.error("Error loading category:", error);
         setResources([]);
@@ -59,7 +63,7 @@ const Resources = () => {
   };
 
   const handleImageError = (event) => {
-    event.target.src = "/placeholder.jpg";
+    event.target.src = "/placeholder.png";
     event.target.classList.add("error");
   };
 
@@ -73,20 +77,20 @@ const Resources = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const img = entry.target;
-            const resourceId = img.getAttribute('data-resource-id');
+            const resourceId = img.getAttribute("data-resource-id");
             if (resourceId) {
-              img.src = img.getAttribute('data-src');
+              img.src = img.getAttribute("data-src");
               observer.unobserve(img);
             }
           }
         });
       },
       {
-        rootMargin: '50px',
+        rootMargin: "50px",
       }
     );
 
-    const images = document.querySelectorAll('[data-src]');
+    const images = document.querySelectorAll("[data-src]");
     images.forEach((img) => observer.observe(img));
 
     return () => {
@@ -104,65 +108,65 @@ const Resources = () => {
               <Button
                 key={category.id}
                 className="rounded-full font-medium grow"
-                variant={selectedCategory === category.id ? "default" : "outline"}
+                variant={
+                  selectedCategory === category.id ? "default" : "outline"
+                }
                 onClick={() => {
                   setSelectedCategory(category.id);
                   setVisibleCount(6);
                   setLoadedImages({});
                 }}
               >
-                {category.label} 
+                {category.label}
               </Button>
             ))}
           </div>
 
           {/* Resource cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {isLoading ? (
-              // Loading skeletons
-              Array.from({ length: 6 }).map((_, index) => (
-                <Skeleton
-                  key={index}
-                  className="h-[330px] w-[28rem] rounded-lg"
-                />
-              ))
-            ) : (
-              // Actual resources
-              resources.slice(0, visibleCount).map((resource, index) => (
-                <Link
-                  key={`${resource.name}-${index}`}
-                  href={`https://${resource.link}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-4 rounded-lg border hover:bg-secondary/30 transition-colors flex flex-col gap-4"
-                >
-                  <div className="w-full relative">
-                    <div
-                      className={`w-full h-[15rem] overflow-hidden rounded-md ${
-                        !loadedImages[resource.name]
-                          ? "bg-gray-200 animate-pulse"
-                          : ""
-                      }`}
-                    >
-                      <img
-                        data-src={resource.image}
-                        data-resource-id={resource.name}
-                        alt={resource.name}
-                        onLoad={() => handleImageLoad(resource.name)}
-                        onError={handleImageError}
-                        className={`object-cover w-full h-full transition-opacity duration-300 ${
-                          loadedImages[resource.name]
-                            ? "opacity-100"
-                            : "opacity-0"
+            {isLoading
+              ? // Loading skeletons
+                Array.from({ length: 6 }).map((_, index) => (
+                  <Skeleton
+                    key={index}
+                    className="h-[330px] w-[28rem] rounded-lg"
+                  />
+                ))
+              : // Actual resources
+                resources.slice(0, visibleCount).map((resource, index) => (
+                  <Link
+                    key={`${resource.name}-${index}`}
+                    href={`https://${resource.link}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-4 rounded-lg border hover:bg-secondary/30 transition-colors flex flex-col gap-4"
+                  >
+                    <div className="w-full relative">
+                      <div
+                        className={`w-full h-[15rem] overflow-hidden rounded-md ${
+                          !loadedImages[resource.name]
+                            ? "bg-gray-200 animate-pulse"
+                            : ""
                         }`}
-                      />
+                      >
+                        <img
+                          data-src={resource.image}
+                          data-resource-id={resource.name}
+                          alt={resource.name}
+                          onLoad={() => handleImageLoad(resource.name)}
+                          onError={handleImageError}
+                          className={`object-cover w-full h-full transition-opacity duration-300 ${
+                            loadedImages[resource.name]
+                              ? "opacity-100"
+                              : "opacity-0"
+                          }`}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <h3 className="font-sans font-medium">{resource.name}</h3>
-                  <p className="text-sm opacity-80">{resource.description}</p>
-                </Link>
-              ))
-            )}
+                    <h3 className="font-sans font-medium">{resource.name}</h3>
+                    <p className="text-sm opacity-80">{resource.description}</p>
+                  </Link>
+                ))}
           </div>
 
           {/* Show More button */}
