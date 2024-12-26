@@ -6,8 +6,8 @@ const Hero = () => {
       <div className="container relative z-10">
         <div className="flex flex-col items-center space-y-10 text-center">
           <h1 className="text-5xl max-sm:text-4xl tracking-tighter text-foreground font-sans ">
-            The only Hub made for{" "}
-            <span className="highlight-indie">Indie Hackers</span>
+            The only <span className="highlight-indie">Hub</span> made for Indie
+            Hackers
           </h1>
           <p className="max-w-[700px] opacity-80 text-lg">
             All the resources you need to build and grow your next project.
