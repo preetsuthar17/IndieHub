@@ -26,6 +26,7 @@ const getResourceCount = (categoryId) => {
 const Resources = () => {
   const [selectedCategory, setSelectedCategory] = useState("ui");
   const [resources, setResources] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(5);
 
   useEffect(() => {
     const loadResources = () => {
@@ -41,7 +42,12 @@ const Resources = () => {
       }
     };
     loadResources();
+    setVisibleCount(6);
   }, [selectedCategory]);
+
+  const handleShowMore = () => {
+    setVisibleCount((prevCount) => prevCount + 5);
+  };
 
   return (
     <>
@@ -72,7 +78,7 @@ const Resources = () => {
 
             {/* Resource cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {resources.map((resource, index) => (
+              {resources.slice(0, visibleCount).map((resource, index) => (
                 <Link
                   key={index}
                   href={`https://${resource.link}`}
@@ -89,12 +95,22 @@ const Resources = () => {
                     />
                   </div>
                   <h3 className="font-sans font-medium">{resource.name}</h3>
-                  <p className="text-sm opacity-80">
-                    {resource.description}
-                  </p>
+                  <p className="text-sm opacity-80">{resource.description}</p>
                 </Link>
               ))}
             </div>
+
+            {/* Show More button */}
+            {visibleCount < resources.length && (
+              <div className="mt-4 text-center">
+                <Button
+                  onClick={handleShowMore}
+                  className="px-4 py-2 rounded-full font-medium"
+                >
+                  Show More
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </section>
