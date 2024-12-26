@@ -123,7 +123,7 @@ const Resources = () => {
               Array.from({ length: 6 }).map((_, index) => (
                 <Skeleton
                   key={index}
-                  className="h-[330px] w-full rounded-lg"
+                  className="h-[330px] w-[28rem] rounded-lg"
                 />
               ))
             ) : (
