@@ -79,3 +79,26 @@ html {
   filter: grayscale(1);
   opacity: 0.8;
 }
+
+.highlight-indie {
+  position: relative;
+  display: inline-block;
+  background: #fef3c7; 
+  border: 2px dashed #fbbf24; 
+  padding: 0.2em 0.5em;
+  transform: rotate(-2deg);
+  box-shadow: 2px 3px 0px #fbbf24; 
+}
+
+.highlight-indie::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -4px;
+  right: -4px;
+  bottom: -2px;
+  border: 1px dashed #fbbf24;
+  background: transparent;
+  transform: rotate(1deg);
+  z-index: -1;
+}

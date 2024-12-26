@@ -6,12 +6,13 @@ const Hero = () => {
       <div className="container relative z-10">
         <div className="flex flex-col items-center space-y-10 text-center">
           <h1 className="text-5xl max-sm:text-4xl tracking-tighter text-foreground font-sans ">
-            The Only Hub made for Indie Hackers
+            The only Hub made for{" "}
+            <span className="highlight-indie">Indie Hackers</span>
           </h1>
-          <p className="max-w-[700px] opacity-80  text-lg">
+          <p className="max-w-[700px] opacity-80 text-lg">
             All the resources you need to build and grow your next project.
           </p>
-          <div className="flex gap-8  items-center justify-center flex-wrap">
+          <div className="flex gap-8 items-center justify-center flex-wrap">
             <div className="flex items-center gap-4 relative">
               <a
                 href="https://www.producthunt.com/posts/indiehub-4?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-indiehub&#0045;4"
