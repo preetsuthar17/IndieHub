@@ -14,8 +14,8 @@ body,
 html {
   overflow-x: hidden;
   font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
-    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth !important;
@@ -101,4 +101,9 @@ html {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.error {
+  filter: grayscale(1);
+  opacity: 0.8;
 }

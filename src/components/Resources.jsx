@@ -7,21 +7,38 @@ import { Skeleton } from "./ui/skeleton";
 import ai from "../data/ai";
 import ui from "../data/ui";
 import design from "../data/design";
+import fonts from "../data/fonts";
 
 const categories = [
   { id: "ui", label: "UI Libraries", data: ui },
   { id: "ai", label: "AI Tools", data: ai },
   { id: "design", label: "UI/UX Inspirations", data: design },
+  { id: "fonts", label: "Fonts", data: fonts },
 ];
 
 const Resources = () => {
   const [selectedCategory, setSelectedCategory] = useState(categories[0].id);
   const [resources, setResources] = useState([]);
   const [visibleCount, setVisibleCount] = useState(5);
+  const [loadedImages, setLoadedImages] = useState({});
+
+  const handleImageLoad = (resourceId) => {
+    setLoadedImages((prev) => ({
+      ...prev,
+      [resourceId]: true,
+    }));
+  };
+
+  const handleImageError = (event) => {
+    event.target.src = "/placeholder.jpg"; // Fallback image
+    event.target.classList.add("error");
+  };
 
   useEffect(() => {
+    setLoadedImages({});
+    setResources([]);
     const currentCategory = categories.find(
-      (cat) => cat.id === selectedCategory,
+      (cat) => cat.id === selectedCategory
     );
     if (currentCategory) {
       setResources(currentCategory.data);
@@ -65,18 +82,33 @@ const Resources = () => {
               {resources.length > 0
                 ? resources.slice(0, visibleCount).map((resource, index) => (
                     <Link
-                      key={index}
+                      key={`${resource.name}-${index}`}
                       href={`https://${resource.link}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-4 rounded-lg border hover:bg-secondary/30 transition-colors flex flex-col gap-4"
                     >
                       <div className="w-full relative">
-                        <img
-                          src={resource.image}
-                          alt={resource.name}
-                          className="object-cover rounded-md w-full h-[15rem]"
-                        />
+                        <div
+                          className={`w-full h-[15rem] overflow-hidden rounded-md ${
+                            !loadedImages[resource.name]
+                              ? "bg-gray-200 animate-pulse"
+                              : ""
+                          }`}
+                        >
+                          <img
+                            src={resource.image}
+                            alt={resource.name}
+                            loading="lazy"
+                            onLoad={() => handleImageLoad(resource.name)}
+                            onError={handleImageError}
+                            className={`object-cover w-full h-full transition-opacity duration-300 ${
+                              loadedImages[resource.name]
+                                ? "opacity-100"
+                                : "opacity-0"
+                            }`}
+                          />
+                        </div>
                       </div>
                       <h3 className="font-sans font-medium">{resource.name}</h3>
                       <p className="text-sm opacity-80">
@@ -85,7 +117,10 @@ const Resources = () => {
                     </Link>
                   ))
                 : Array.from({ length: visibleCount }).map((_, index) => (
-                    <Skeleton key={index} className="h-[330px] w-[28rem] rounded-lg" />
+                    <Skeleton
+                      key={index}
+                      className="h-[330px] w-[28rem] rounded-lg"
+                    />
                   ))}
             </div>
 
