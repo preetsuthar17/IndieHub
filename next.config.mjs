@@ -3,6 +3,20 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: ["i.imgur.com"],
+    formats: ["image/webp"],
+  },
+  async headers() {
+    return [
+      {
+        source: "/:all*(jpg|jpeg|png|webp|avif|gif|svg)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+    ];
   },
 };
 
