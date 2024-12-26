@@ -45,6 +45,19 @@ const design = [
     link: "uiverse.io",
     image: "https://i.imgur.com/iQvnOff.png",
   },
+  {
+    name: "Dribbble",
+    description:
+      "Dribbble is where designers gain inspiration, feedback, community, and jobs and is your best resource to discover and connect with designers worldwide.",
+    link: "dribbble.com",
+    image: "https://i.imgur.com/p7SChUV.png",
+  },
+  {
+    name:"Behance",
+    description:"Behance is the world's largest creative network for showcasing and discovering creative work",
+    link:"behance.net",
+    image:"https://i.imgur.com/1RNm87j.jpeg"
+  }
 ];
 
 export default design;
