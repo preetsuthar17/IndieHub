@@ -9,9 +9,9 @@ import ui from "../data/ui";
 import design from "../data/design";
 
 const categories = [
-  { id: "ui", label: "User Interface (UI)", data: ui },
+  { id: "ui", label: "UI Libraries", data: ui },
   { id: "ai", label: "AI Tools", data: ai },
-  { id: "design", label: "Design Tools", data: design },
+  { id: "design", label: "UI/UX Inspirations", data: design },
 ];
 
 const Resources = () => {
