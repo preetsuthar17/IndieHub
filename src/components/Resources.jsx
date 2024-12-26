@@ -85,7 +85,7 @@ const Resources = () => {
                     </Link>
                   ))
                 : Array.from({ length: visibleCount }).map((_, index) => (
-                    <Skeleton key={index} className="h-[230px] rounded-lg" />
+                    <Skeleton key={index} className="h-[330px] w-[28rem] rounded-lg" />
                   ))}
             </div>
 
