@@ -29,7 +29,7 @@ const Header = () => {
       <div
         className="bg-zinc-900 font-sans font-medium text-white cursor-pointer flex items-center justify-center"
         onClick={() => {
-          window.open("https://contrafast.in", "_blank");
+          window.open("https://contrafast.in?ref=indiehub", "_blank");
         }}
       >
         <p className="p-2 flex items-center gap-2 justify-center text-center text-sm">
