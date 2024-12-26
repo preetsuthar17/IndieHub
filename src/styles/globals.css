@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+
 * {
   padding: 0;
   margin: 0;
@@ -20,6 +22,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth !important;
   -webkit-scroll-behavior: smooth !important;
+}
+
+.font-caveat {
+  font-family: "Caveat", cursive !important;
 }
 
 @layer base {

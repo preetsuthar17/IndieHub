@@ -63,7 +63,7 @@ const Header = () => {
                 className="text-sm hover:underline"
                 href="https://forms.gle/iDTEMEJyVqHKmu6WA"
               >
-                Submit Resource
+                Submit
               </Link>
             </li>
           </ul>
@@ -138,7 +138,7 @@ const Header = () => {
                       href="https://forms.gle/iDTEMEJyVqHKmu6WA"
                       className="block py-2 hover:underline"
                     >
-                      Submit Resource
+                      Submit
                     </Link>
                   </li>
                   <li className="flex items-center gap-2">
