@@ -17,6 +17,8 @@ const loadCategoryData = async (categoryId) => {
       return (await import("../data/colors")).default;
     case "images":
       return (await import("../data/images")).default;
+    case "generators":
+      return (await import("../data/generators")).default;
     default:
       return [];
   }
@@ -30,6 +32,7 @@ const categories = [
   { id: "fonts", label: "Fonts" },
   { id: "colors", label: "Colors" },
   { id: "images", label: "Images" },
+  { id: "generators", label: "Generators" },
 ];
 
 const Resources = () => {
@@ -164,7 +167,7 @@ const Resources = () => {
                       </div>
                     </div>
                     <h3 className="font-sans font-medium">{resource.name}</h3>
-                    <p className="text-sm opacity-80">{resource.description}</p>
+                    <p className="text-sm opacity-80 leading-tight">{resource.description}</p>
                   </Link>
                 ))}
           </div>
