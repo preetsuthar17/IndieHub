@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 
 import { LucideGithub } from "lucide-react";
+
 import Link from "next/link";
 
 const Hero = () => {
