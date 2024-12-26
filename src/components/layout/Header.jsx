@@ -8,11 +8,7 @@ import { Menu } from "lucide-react";
 import { Syne } from "next/font/google";
 
 import { Button } from "../ui/button";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 
 const syne = Syne({
   variable: "--font-syne",

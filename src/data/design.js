@@ -55,41 +55,44 @@ const design = [
     image: "https://i.imgur.com/p7SChUV.png",
   },
   {
-    name:"Behance",
-    description:"Behance is the world's largest creative network for showcasing and discovering creative work",
-    link:"behance.net",
-    image:"https://i.imgur.com/1RNm87j.jpeg"
+    name: "Behance",
+    description:
+      "Behance is the world's largest creative network for showcasing and discovering creative work",
+    link: "behance.net",
+    image: "https://i.imgur.com/1RNm87j.jpeg",
   },
   {
     name: "Saaspo",
     description: "A curated collection of the best SaaS websites on the web.",
     link: "saaspo.com",
-    image: "https://i.imgur.com/KZI9XZh.png"
+    image: "https://i.imgur.com/KZI9XZh.png",
   },
   {
-    name:"Craft by Rauno",
+    name: "Craft by Rauno",
     description: "Devouring details. Nourishing novelty. Deploying excellence.",
     link: "rauno.me/craft",
-    image: "https://i.imgur.com/FmTJPVe.png"
+    image: "https://i.imgur.com/FmTJPVe.png",
   },
   {
     name: "Design Spells",
-    description: "Discover micro-interactions, easter eggs, and other seemingly extra design details that infuse life, personality, and fun back into the web.",
+    description:
+      "Discover micro-interactions, easter eggs, and other seemingly extra design details that infuse life, personality, and fun back into the web.",
     link: "designspells.com",
     image: "https://i.imgur.com/aSH2YkE.png",
-  },{
+  },
+  {
     name: "App Motion",
     description: "Explore the best, hand-picked mobile app motion design",
     link: "appmotion.design",
-    image: "https://i.imgur.com/rVxjU4y.png"
+    image: "https://i.imgur.com/rVxjU4y.png",
   },
   {
     name: "Curated Design",
-    description: "Unleash your creativity with out-of-this-world web design inspiration from across the web",
+    description:
+      "Unleash your creativity with out-of-this-world web design inspiration from across the web",
     link: "curated.design",
-    image: 'https://i.imgur.com/0jbjayC.png'
+    image: "https://i.imgur.com/0jbjayC.png",
   },
-
 ];
 
 export default design;

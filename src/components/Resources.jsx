@@ -38,7 +38,7 @@ const Resources = () => {
     setLoadedImages({});
     setResources([]);
     const currentCategory = categories.find(
-      (cat) => cat.id === selectedCategory
+      (cat) => cat.id === selectedCategory,
     );
     if (currentCategory) {
       setResources(currentCategory.data);
