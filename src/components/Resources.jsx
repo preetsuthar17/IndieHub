@@ -19,12 +19,13 @@ const loadCategoryData = async (categoryId) => {
       return (await import("../data/images")).default;
     case "generators":
       return (await import("../data/generators")).default;
+    case "icons":
+      return (await import("../data/icons")).default;
     default:
       return [];
   }
 };
 
-// Category definitions without the data
 const categories = [
   { id: "ui", label: "UI Libraries" },
   { id: "ai", label: "AI Tools" },
@@ -33,6 +34,7 @@ const categories = [
   { id: "colors", label: "Colors" },
   { id: "images", label: "Images" },
   { id: "generators", label: "Generators" },
+  { id: "icons", label: "Icons" },
 ];
 
 const Resources = () => {
