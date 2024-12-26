@@ -1,30 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, memo } from "react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";
+import dynamic from "next/dynamic";
 
+// Pre-define static content
+const INITIAL_VISIBLE_COUNT = 6;
+const LOAD_MORE_INCREMENT = 5;
+const PLACEHOLDER_IMAGE = "/placeholder.png";
+
+// Memoized category data loading
+const categoryDataCache = new Map();
 const loadCategoryData = async (categoryId) => {
-  switch (categoryId) {
-    case "ui":
-      return (await import("../data/ui")).default;
-    case "ai":
-      return (await import("../data/ai")).default;
-    case "design":
-      return (await import("../data/design")).default;
-    case "fonts":
-      return (await import("../data/fonts")).default;
-    case "colors":
-      return (await import("../data/colors")).default;
-    case "images":
-      return (await import("../data/images")).default;
-    case "generators":
-      return (await import("../data/generators")).default;
-    case "icons":
-      return (await import("../data/icons")).default;
-      case "illustrations":
-      return (await import("../data/illustrations")).default;
-    default:
-      return [];
+  if (categoryDataCache.has(categoryId)) {
+    return categoryDataCache.get(categoryId);
+  }
+
+  try {
+    const data = (await import(`../data/${categoryId}`)).default;
+    categoryDataCache.set(categoryId, data);
+    return data;
+  } catch {
+    return [];
   }
 };
 
@@ -40,145 +37,146 @@ const categories = [
   { id: "illustrations", label: "Illustrations" },
 ];
 
+// Memoized ResourceCard component
+const ResourceCard = memo(({ resource, onImageLoad, loadedImages }) => {
+  const handleError = useCallback((event) => {
+    event.target.src = PLACEHOLDER_IMAGE;
+    event.target.classList.add("error");
+  }, []);
+
+  return (
+    <Link
+      href={`https://${resource.link}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-4 rounded-lg border hover:bg-primary/5 transition-colors flex flex-col gap-4"
+    >
+      <div className="w-full relative">
+        <div
+          className={`w-full h-[15rem] overflow-hidden rounded-md ${
+            !loadedImages[resource.name] ? "bg-gray-200 animate-pulse" : ""
+          }`}
+        >
+          <img
+            loading="lazy"
+            src={resource.image}
+            alt={resource.name}
+            onLoad={() => onImageLoad(resource.name)}
+            onError={handleError}
+            className={`object-cover w-full h-full transition-opacity duration-300 ${
+              loadedImages[resource.name] ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        </div>
+      </div>
+      <h3 className="font-sans font-medium">{resource.name}</h3>
+      <p className="text-sm opacity-80 leading-tight">{resource.description}</p>
+    </Link>
+  );
+});
+
+ResourceCard.displayName = "ResourceCard";
+
+// Memoized CategoryButton component
+const CategoryButton = memo(({ category, isSelected, onClick }) => (
+  <Button
+    className="rounded-full font-medium grow"
+    variant={isSelected ? "default" : "outline"}
+    onClick={onClick}
+  >
+    {category.label}
+  </Button>
+));
+
+CategoryButton.displayName = "CategoryButton";
+
 const Resources = () => {
   const [selectedCategory, setSelectedCategory] = useState(categories[0].id);
   const [resources, setResources] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(6);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
   const [loadedImages, setLoadedImages] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
+  const handleImageLoad = useCallback((resourceId) => {
+    setLoadedImages((prev) => ({ ...prev, [resourceId]: true }));
+  }, []);
+
+  const handleShowMore = useCallback(() => {
+    setVisibleCount((prev) => prev + LOAD_MORE_INCREMENT);
+  }, []);
+
+  const handleCategoryChange = useCallback((categoryId) => {
+    setSelectedCategory(categoryId);
+    setVisibleCount(INITIAL_VISIBLE_COUNT);
+    setLoadedImages({});
+  }, []);
+
   useEffect(() => {
+    let isMounted = true;
+
     const loadCategory = async () => {
       setIsLoading(true);
       try {
         const data = await loadCategoryData(selectedCategory);
-        setResources(data);
+        if (isMounted) {
+          setResources(data);
+        }
       } catch (error) {
         console.error("Error loading category:", error);
-        setResources([]);
+        if (isMounted) {
+          setResources([]);
+        }
       }
-      setIsLoading(false);
+      if (isMounted) {
+        setIsLoading(false);
+      }
     };
 
     loadCategory();
+    return () => {
+      isMounted = false;
+    };
   }, [selectedCategory]);
 
-  const handleImageLoad = (resourceId) => {
-    setLoadedImages((prev) => ({
-      ...prev,
-      [resourceId]: true,
-    }));
-  };
-
-  const handleImageError = (event) => {
-    event.target.src = "/placeholder.png";
-    event.target.classList.add("error");
-  };
-
-  const handleShowMore = () => {
-    setVisibleCount((prevCount) => prevCount + 5);
-  };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            const resourceId = img.getAttribute("data-resource-id");
-            if (resourceId) {
-              img.src = img.getAttribute("data-src");
-              observer.unobserve(img);
-            }
-          }
-        });
-      },
-      {
-        rootMargin: "50px",
-      },
-    );
-
-    const images = document.querySelectorAll("[data-src]");
-    images.forEach((img) => observer.observe(img));
-
-    return () => {
-      images.forEach((img) => observer.unobserve(img));
-    };
-  }, [resources, visibleCount]);
+  const visibleResources = resources.slice(0, visibleCount);
+  const hasMoreToShow = visibleCount < resources.length;
 
   return (
     <section id="resources">
       <div className="flex flex-col items-center justify-center my-20 w-[90%] mx-auto gap-20">
         <div>
-          {/* Category chips */}
           <div className="flex flex-wrap gap-2 mb-8 font-sans">
             {categories.map((category) => (
-              <Button
+              <CategoryButton
                 key={category.id}
-                className="rounded-full font-medium grow"
-                variant={
-                  selectedCategory === category.id ? "default" : "outline"
-                }
-                onClick={() => {
-                  setSelectedCategory(category.id);
-                  setVisibleCount(6);
-                  setLoadedImages({});
-                }}
-              >
-                {category.label}
-              </Button>
+                category={category}
+                isSelected={selectedCategory === category.id}
+                onClick={() => handleCategoryChange(category.id)}
+              />
             ))}
           </div>
 
-          {/* Resource cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {isLoading
-              ? // Loading skeletons
-                Array.from({ length: 6 }).map((_, index) => (
-                  <Skeleton
-                    key={index}
-                    className="h-[330px] w-[28rem] rounded-lg"
-                  />
-                ))
-              : // Actual resources
-                resources.slice(0, visibleCount).map((resource, index) => (
-                  <Link
+              ? Array.from({ length: INITIAL_VISIBLE_COUNT }).map(
+                  (_, index) => (
+                    <Skeleton
+                      key={index}
+                      className="h-[330px] w-[28rem] rounded-lg"
+                    />
+                  )
+                )
+              : visibleResources.map((resource, index) => (
+                  <ResourceCard
                     key={`${resource.name}-${index}`}
-                    href={`https://${resource.link}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-4 rounded-lg border hover:bg-secondary/30 transition-colors flex flex-col gap-4"
-                  >
-                    <div className="w-full relative">
-                      <div
-                        className={`w-full h-[15rem] overflow-hidden rounded-md ${
-                          !loadedImages[resource.name]
-                            ? "bg-gray-200 animate-pulse"
-                            : ""
-                        }`}
-                      >
-                        <img
-                          data-src={resource.image}
-                          data-resource-id={resource.name}
-                          alt={resource.name}
-                          onLoad={() => handleImageLoad(resource.name)}
-                          onError={handleImageError}
-                          className={`object-cover w-full h-full transition-opacity duration-300 ${
-                            loadedImages[resource.name]
-                              ? "opacity-100"
-                              : "opacity-0"
-                          }`}
-                        />
-                      </div>
-                    </div>
-                    <h3 className="font-sans font-medium">{resource.name}</h3>
-                    <p className="text-sm opacity-80 leading-tight">{resource.description}</p>
-                  </Link>
+                    resource={resource}
+                    onImageLoad={handleImageLoad}
+                    loadedImages={loadedImages}
+                  />
                 ))}
           </div>
 
-          {/* Show More button */}
-          {!isLoading && visibleCount < resources.length && (
+          {!isLoading && hasMoreToShow && (
             <div className="mt-4 text-center">
               <Button
                 onClick={handleShowMore}
@@ -194,4 +192,4 @@ const Resources = () => {
   );
 };
 
-export default Resources;
+export default memo(Resources);
