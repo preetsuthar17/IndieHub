@@ -23,3 +23,4 @@ All the resources you need to build and grow your next project.
 
 - [ ] Authentication System
 - [ ] Favorites and Bookmarks
+- [ ] Wall of love
