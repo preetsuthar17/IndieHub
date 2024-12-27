@@ -16,6 +16,11 @@ export default function Document() {
           data-x_margin="18"
           data-y_margin="18"
         ></script>
+        <script
+          data-goatcounter="https://preett.goatcounter.com/count"
+          async
+          src="//gc.zgo.at/count.js"
+        ></script>
         <Main />
         <NextScript />
       </body>
