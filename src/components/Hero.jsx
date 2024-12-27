@@ -9,8 +9,8 @@ const Hero = () => {
             The only <span className="highlight-indie">Hub 😂</span> made for
             Indie Hackers
           </h1>
-          <p className="max-w-[700px] opacity-80 text-lg">
-            All the resources you need to build and grow your next project.
+          <p className="max-w-[700px] opacity-80 text-xl">
+            Collection of awesome resources you need to build and grow your next project.
           </p>
           <div className="flex gap-8 items-center justify-center flex-wrap">
             <div className="flex items-center gap-4 relative">
