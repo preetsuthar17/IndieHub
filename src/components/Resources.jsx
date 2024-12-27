@@ -42,6 +42,7 @@ const categories = [
   { id: "generators", label: "Generators" },
   { id: "icons", label: "Icons" },
   { id: "illustrations", label: "Illustrations" },
+  { id: "analytics", label: "Analytics" },
 ];
 
 /**
