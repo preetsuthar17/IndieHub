@@ -157,12 +157,12 @@ const Resources = () => {
           query: { tab: categoryId },
         },
         undefined,
-        { shallow: true }
+        { shallow: true },
       );
       setVisibleCount(INITIAL_VISIBLE_COUNT);
       setLoadedImages({});
     },
-    [router]
+    [router],
   );
 
   // Fetch resources for the selected category
@@ -222,7 +222,7 @@ const Resources = () => {
                       key={index}
                       className="h-[330px] w-[28rem] rounded-lg"
                     />
-                  )
+                  ),
                 )
               : visibleResources.map((resource, index) => (
                   <ResourceCard

@@ -6,7 +6,7 @@ import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { GoogleTagManager } from '@next/third-parties/google'
+import { GoogleTagManager } from "@next/third-parties/google";
 
 export default function App({ Component, pageProps }) {
   return (

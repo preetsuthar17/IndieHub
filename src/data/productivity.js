@@ -27,10 +27,11 @@ const productivity = [
   },
   {
     name: "ContraFast",
-    description: "ContraFast streamlines your contract workflow. Create, customize, and get contracts signed in minutes, not days.",
+    description:
+      "ContraFast streamlines your contract workflow. Create, customize, and get contracts signed in minutes, not days.",
     link: "contrafast.in",
-    image: "https://i.imgur.com/jwZYsMz.png"
-  }
+    image: "https://i.imgur.com/jwZYsMz.png",
+  },
 ];
 
 export default productivity;
