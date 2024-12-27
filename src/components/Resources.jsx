@@ -45,11 +45,13 @@ const categories = [
   { id: "analytics", label: "Analytics" },
   { id: "seo", label: "SEO" },
   { id: "payments", label: "Payments" },
-  // { id: "databases", label: "Databases" },
-  // { id: "hosting", label: "Hosting" },
-  // { id: "nocode", label: "No Code" },
-  // { id: "marketing", label: "Marketing" },
-  // { id: "productivity", label: "Productivity" },
+  { id: "boilerplates", label: "Boilerplates" },
+  { id: "productivity", label: "Productivity" },
+  { id: "emails", label: "Emails" },
+  { id: "databases", label: "Databases" },
+  { id: "hosting", label: "Hosting" },
+  { id: "nocode", label: "No Code" },
+  { id: "marketing", label: "Marketing" },
 ];
 
 /**
@@ -157,12 +159,12 @@ const Resources = () => {
           query: { tab: categoryId },
         },
         undefined,
-        { shallow: true },
+        { shallow: true }
       );
       setVisibleCount(INITIAL_VISIBLE_COUNT);
       setLoadedImages({});
     },
-    [router],
+    [router]
   );
 
   // Fetch resources for the selected category
@@ -222,7 +224,7 @@ const Resources = () => {
                       key={index}
                       className="h-[330px] w-[28rem] rounded-lg"
                     />
-                  ),
+                  )
                 )
               : visibleResources.map((resource, index) => (
                   <ResourceCard
