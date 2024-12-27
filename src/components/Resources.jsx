@@ -43,6 +43,13 @@ const categories = [
   { id: "icons", label: "Icons" },
   { id: "illustrations", label: "Illustrations" },
   { id: "analytics", label: "Analytics" },
+  // { id: "payments", label: "Payments" },
+  // { id: "databases", label: "Databases" },
+  // { id: "hosting", label: "Hosting" },
+  // { id: "nocode", label: "No Code" },
+  // { id: "marketing", label: "Marketing" },
+  // { id: "productivity", label: "Productivity" },
+  // { id: "seo", label: "SEO" },
 ];
 
 /**

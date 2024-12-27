@@ -49,6 +49,13 @@ const analytics = [
     image: "https://i.imgur.com/WA1slc4.png",
   },
   {
+    name: "Ahrefs Web Analytics",
+    description:
+      "A better way to track website traffic: focused insights, GDPR-friendly, cookie-free, and lightning-fast.",
+    link: "ahrefs.com/web-analytics",
+    image: "",
+  },
+  {
     name: "Matomo",
     description:
       "Formerly Piwik, an open-source analytics platform that gives you 100% data ownership and user privacy protection.",
