@@ -2,15 +2,21 @@ import { useState, useEffect, useCallback, memo } from "react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";
-import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
-// Pre-define static content
-const INITIAL_VISIBLE_COUNT = 6;
-const LOAD_MORE_INCREMENT = 5;
-const PLACEHOLDER_IMAGE = "/placeholder.png";
+// Constants for static content
+const INITIAL_VISIBLE_COUNT = 6; // Initial number of resources visible
+const LOAD_MORE_INCREMENT = 5; // Number of resources to load on "Show More"
+const PLACEHOLDER_IMAGE = "/placeholder.png"; // Fallback image for errors
 
-// Memoized category data loading
+// Cache for category data
 const categoryDataCache = new Map();
+
+/**
+ * Loads category data dynamically and caches it.
+ * @param {string} categoryId - ID of the category to load.
+ * @returns {Promise<Array>} - List of resources for the category.
+ */
 const loadCategoryData = async (categoryId) => {
   if (categoryDataCache.has(categoryId)) {
     return categoryDataCache.get(categoryId);
@@ -25,6 +31,7 @@ const loadCategoryData = async (categoryId) => {
   }
 };
 
+// List of categories
 const categories = [
   { id: "ui", label: "UI Libraries" },
   { id: "ai", label: "AI Tools" },
@@ -37,8 +44,12 @@ const categories = [
   { id: "illustrations", label: "Illustrations" },
 ];
 
-// Memoized ResourceCard component
+/**
+ * Memoized ResourceCard component.
+ * Displays an individual resource card.
+ */
 const ResourceCard = memo(({ resource, onImageLoad, loadedImages }) => {
+  // Handles image load errors by setting a placeholder image
   const handleError = useCallback((event) => {
     event.target.src = PLACEHOLDER_IMAGE;
     event.target.classList.add("error");
@@ -77,7 +88,10 @@ const ResourceCard = memo(({ resource, onImageLoad, loadedImages }) => {
 
 ResourceCard.displayName = "ResourceCard";
 
-// Memoized CategoryButton component
+/**
+ * Memoized CategoryButton component.
+ * Displays a button for selecting a category.
+ */
 const CategoryButton = memo(({ category, isSelected, onClick }) => (
   <Button
     className="rounded-full font-medium grow"
@@ -90,27 +104,60 @@ const CategoryButton = memo(({ category, isSelected, onClick }) => (
 
 CategoryButton.displayName = "CategoryButton";
 
+/**
+ * Resources component.
+ * Displays resources based on the selected category.
+ */
 const Resources = () => {
+  // State variables
   const [selectedCategory, setSelectedCategory] = useState(categories[0].id);
   const [resources, setResources] = useState([]);
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
   const [loadedImages, setLoadedImages] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
+  const router = useRouter();
+
+  // Load initial category from query params if available
+  useEffect(() => {
+    if (router.isReady) {
+      const { tab } = router.query;
+      const isValidCategory = categories.some((cat) => cat.id === tab);
+      if (tab && isValidCategory) {
+        setSelectedCategory(tab);
+      }
+    }
+  }, [router.isReady, router.query]);
+
+  // Updates loaded images state
   const handleImageLoad = useCallback((resourceId) => {
     setLoadedImages((prev) => ({ ...prev, [resourceId]: true }));
   }, []);
 
+  // Loads more resources
   const handleShowMore = useCallback(() => {
     setVisibleCount((prev) => prev + LOAD_MORE_INCREMENT);
   }, []);
 
-  const handleCategoryChange = useCallback((categoryId) => {
-    setSelectedCategory(categoryId);
-    setVisibleCount(INITIAL_VISIBLE_COUNT);
-    setLoadedImages({});
-  }, []);
+  // Handles category change and updates URL without reloading the page
+  const handleCategoryChange = useCallback(
+    (categoryId) => {
+      setSelectedCategory(categoryId);
+      router.push(
+        {
+          pathname: router.pathname,
+          query: { tab: categoryId },
+        },
+        undefined,
+        { shallow: true }
+      );
+      setVisibleCount(INITIAL_VISIBLE_COUNT);
+      setLoadedImages({});
+    },
+    [router]
+  );
 
+  // Fetch resources for the selected category
   useEffect(() => {
     let isMounted = true;
 
@@ -138,6 +185,7 @@ const Resources = () => {
     };
   }, [selectedCategory]);
 
+  // Filter visible resources based on the count
   const visibleResources = resources.slice(0, visibleCount);
   const hasMoreToShow = visibleCount < resources.length;
 
@@ -145,6 +193,7 @@ const Resources = () => {
     <section id="resources">
       <div className="flex flex-col items-center justify-center my-20 w-[90%] mx-auto gap-20">
         <div>
+          {/* Category selection buttons */}
           <div className="flex flex-wrap gap-2 mb-8 font-sans">
             {categories.map((category) => (
               <CategoryButton
@@ -156,6 +205,7 @@ const Resources = () => {
             ))}
           </div>
 
+          {/* Resources grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {isLoading
               ? Array.from({ length: INITIAL_VISIBLE_COUNT }).map(
@@ -176,6 +226,7 @@ const Resources = () => {
                 ))}
           </div>
 
+          {/* Show More button */}
           {!isLoading && hasMoreToShow && (
             <div className="mt-4 text-center">
               <Button
