@@ -65,7 +65,7 @@ const ResourceCard = memo(({ resource, onImageLoad, loadedImages }) => {
 
   return (
     <Link
-      href={`https://${resource.link}`}
+      href={`https://${resource.link}?ref=indiehub`}
       target="_blank"
       rel="noopener noreferrer"
       className="p-4 rounded-lg border hover:bg-primary/5 transition-colors flex flex-col gap-4"
