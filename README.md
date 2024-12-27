@@ -1,8 +1,6 @@
-# IndieHub - The only Hub 😂 made for Indie Hackers
+# IndieHub - The only Hub made for Indie Hackers
 
 All the resources you need to build and grow your next project.
-
----
 
 ## Collections
 
@@ -17,10 +15,11 @@ All the resources you need to build and grow your next project.
 - Illustrations
 - Analytics
 
----
-
 ## Roadmap
 
 - [ ] Authentication System
 - [ ] Favorites and Bookmarks
 - [ ] Wall of love
+- [ ] Forums/Discussions
+- [ ] Voting System
+- [ ] Trending Tab
