@@ -19,7 +19,7 @@ const Hero = () => {
                 target="_blank"
               >
                 <img
-                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=737512&theme=neutral"
+                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=737512&theme=dark"
                   alt="IndieHub - The&#0032;only&#0032;hub&#0032;made&#0032;for&#0032;indie&#0032;hackers | Product Hunt"
                   style={{
                     width: "250px",
@@ -37,7 +37,7 @@ const Hero = () => {
                   width={60}
                 />
                 <p className="font-caveat lowercase tracking-tighter absolute top-[-1.3rem] right-[-3rem] w-[80px] rotate-[10deg] max-[580px]:rotate-[-20deg] max-[580px]:top-[-1.6rem]">
-                  Love ya &lt;3
+                 Thanks &lt;3
                 </p>
               </div>
             </div>
