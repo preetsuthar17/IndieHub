@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <>
       <footer
-        className={`${syne.variable} font-[family-name:var(--font-syne)] border-t py-5 px-5 flex items-center`}
+        className={`${syne.variable} font-[family-name:var(--font-syne)] border-t py-5 px-5 flex items-center justify-between flex-wrap gap-5`}
       >
         <p className="flex items-center gap-1">
           <span className="opacity-80">Built with ❤️ by</span>{" "}
@@ -22,6 +22,7 @@ const Footer = () => {
             preett
           </Link>
         </p>
+        <p>All screenshots © their respective owners.</p>
       </footer>
     </>
   );
