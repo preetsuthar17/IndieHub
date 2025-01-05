@@ -15,7 +15,7 @@ const Footer = () => {
         <p className="flex items-center gap-1">
           <span className="opacity-80">Built with ❤️ by</span>{" "}
           <Link
-            href="https://x.com/nott_preett"
+            href="https://x.com/preetsuthar17"
             target="_blank"
             className="underline"
           >

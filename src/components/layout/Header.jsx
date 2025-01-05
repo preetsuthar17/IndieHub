@@ -62,7 +62,7 @@ const Header = () => {
               <Link
                 target="_blank"
                 className="text-sm hover:underline"
-                href="https://x.com/nott_preett"
+                href="https://x.com/preetsuthar17"
               >
                 Twitter
               </Link>
@@ -136,7 +136,7 @@ const Header = () => {
                   <li>
                     <Link
                       target="_blank"
-                      href="https://x.com/nott_preett"
+                      href="https://x.com/preetsuthar17"
                       className="block py-2 hover:underline"
                     >
                       Twitter
